@@ -643,3 +643,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+# tem que melhorar o readme
+# Experiments and sacrilege in the name of public good
+# https://open.spotify.com/track/5Q2TZdvxpK85SClfobrflI?si=a3a344fe108740d6
