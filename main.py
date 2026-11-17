@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# --- main.py ---
+# push pre cli novo, tá muito confuso para o tipo de pessoa que vai usar isso aqui, simplificar o maximo para usuarios leigos.
 
 
 import os
@@ -21,7 +21,7 @@ except ImportError:
     sys.exit(1)
 
 
-MEDIAFIRE_URL = "https://www.mediafire.com/file/k41eha7ciqb2lb9/LinaPySims3.zip"
+MEDIAFIRE_URL = "https://www.mediafire.com/file/ghcw8q7txwod4yk/LinaPythonSims3.zip"
 USERNAME      = getpass.getuser()
 HOME          = Path.home()
 WINEPREFIX    = HOME / ".wine_sims3_LinaPython"
@@ -34,7 +34,7 @@ PRODUCT_KEY   = "FL2J-TFWL-5V6E-V5VZ-VRLD"
 
 R = "\033[0;31m"; G = "\033[0;32m"; Y = "\033[1;33m"
 C = "\033[0;36m"; B = "\033[1;34m"; NC = "\033[0m"
-L = "\033[1;34;4m"; 
+L = "\033[1;34;4m"; BR = "\033[1;31m"; BG = "\033[1;32m" 
 
 def log(msg):  print(f"{G}[sims3]{NC} {msg}")
 def warn(msg): print(f"{Y}[warn]{NC}  {msg}")
@@ -82,7 +82,7 @@ def download_file(url: str, dest: Path) -> Path:
     output   = dest / filename
     dest.mkdir(parents=True, exist_ok=True)
 
-    log(f"Baixando {filename}...")
+    log(f"Baixando the sims 3...")
     sessao   = cffi_requests.Session(impersonate="chrome120")
     response = sessao.get(url, stream=True, timeout=60)
 
@@ -115,7 +115,7 @@ def fluxo_download() -> Path:
     while True:
         sep()
         print(f"\n  {B}Download{NC}\n")
-        print(f"  {G}1{NC}. Baixar LinaPySims3.zip do Mediafire")
+        print(f"  {G}1{NC}. Baixar the sims 3 via Mediafire")
         if zip_esperado.exists():
             tamanho = zip_esperado.stat().st_size // 1024 // 1024
             print(f"  {G}2{NC}. Usar arquivo já baixado  {Y}({zip_esperado}, {tamanho}MB){NC}")
@@ -130,7 +130,6 @@ def fluxo_download() -> Path:
         if escolha in ("1", "2"):
             while True:
                 try:
-                    log("Resolvendo link Mediafire...")
                     direct_url = mediafire_direct_link(MEDIAFIRE_URL)
                     log(f"Link direto: {direct_url[:72]}...")
                     return download_file(direct_url, DOWNLOAD_DIR)
@@ -395,8 +394,17 @@ def _menu_opcao(titulo: str, opcoes: list[tuple[str, str]], atual: str) -> str:
 def configurar_options_ini() -> dict:
     opcoes = dict(OPTIONS_PATCH)
 
-    sep()
-    print(f"\n  {B}Configuração do The Sims 3{NC}")
+    
+    print("  +======================================+")
+    print("  |                                      |")
+    print(f"  |   {BG}Configuração do The Sims 3{NC}         |")
+    print("  |                                      |")
+    print("  +======================================+")
+    print("  |                                      |")
+    print(f"  |  {Y}confiuguere as opções do the sims{NC}   |")
+    print(f"  |  {Y}antes de abrir para evitar erros{NC}    |")
+    print("  |                                      |")
+    print("  +======================================+")
     print(f"  {C}* = valor atual selecionado  |  Enter = mantém{NC}\n")
 
 
@@ -475,7 +483,6 @@ def perguntar_cleanup():
     else:
         log(f"Pasta mantida em {DOWNLOAD_DIR}")
 
-
 def link(texto, url):
     # OSC 8: \033]8;;URL\033\\TEXTO\033]8;;\033\\
     return f"\033]8;;{url}\033\\{texto}\033]8;;\033\\"
@@ -516,8 +523,8 @@ def menu_principal() -> str:
     print(f"  {B}youtube:{NC} {link('clique aqui', 'https://www.youtube.com/@LinaSemCalcinha')}")
     print(f"  {B}play my game:{NC} {link('clique aqui', 'https://www.roblox.com/games/112548124461222')}")
     print(f"\n  {G}1{NC}. Instalação completa  (download + prefixo + jogo)")
-    print(f"  {G}2{NC}. Só instalar          (pula download — usa zip já extraído)")
-    print(f"  {G}3{NC}. Só aplicar crack     (prefixo e jogo já instalados)")
+    print(f"  {G}2{NC}. Só instalar          (pula download — faz a instalção do game)")
+    print(f"  {G}3{NC}. Só aplicar crack     (caso o the sims 3 não abra)")
     print(f"  {G}4{NC}. Sair")
     print()
     return input("  Escolha: ").strip()
