@@ -29,7 +29,7 @@ Instala automaticamente o The Sims 3 no Linux via Wine.
 
 **Arch Linux**
 ```bash
-sudo pacman -S wine winetricks python python-pip
+sudo pacman -S wine winetricks python python-pip git
 ```
 ```bash
 sudo pacman -S lib32-nvidia-utils #para usuarios nvidia, ignore se sua gpu for outra.
@@ -37,7 +37,7 @@ sudo pacman -S lib32-nvidia-utils #para usuarios nvidia, ignore se sua gpu for o
 **Ubuntu / Debian**
 ```bash
 sudo dpkg --add-architecture i386
-sudo apt install wine wine32:i386 winetricks python3 python3-pip python3-venv 
+sudo apt install wine wine32:i386 winetricks python3 python3-pip python3-venv git
 ```
 
 ---
